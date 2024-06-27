@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 align="center">Registration form</h1>
+
+
+    <form method="post" action="/insertData">
+        <table border="1" align="center" >
+            <tr>
+                <td>UserId</td>
+                <td><input type="number" name="userid"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><input type="number" name="phone"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+    <table border="1" align="center" cellpadding="10">
+
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+
+            <%   student.map((val) => {  %>
+
+                <tr>
+                    <td><%= val.name %></td>
+                    <td><%= val.email %></td>
+                    <td><%= val.password %></td>
+                    <td><%= val.phone %></td>
+                    <td><button><a href="/deleteData?userid=<%= val.userid %>">Delete</a></button></td>
+                </tr>
+
+                <% }) %>
+   
+    </table>
+
+
+</body>
+</html>
