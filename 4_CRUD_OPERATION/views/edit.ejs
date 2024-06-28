@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 align="center">Edit User</h1>
+
+
+    <form method="post" action="/editData2">
+        <table border="1" align="center" >
+        <input  type="text" value="<%= editRecords.userid %>" name="editid">
+            <tr>
+                <td>UserId</td>
+                <td><input disabled type="number" value="<%= editRecords.userid %>" name="userid"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" value="<%= editRecords.name %>" name="name"></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><input type="email" value="<%= editRecords.email %>" name="email"></td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td><input type="text" value="<%= editRecords.password %>" name="password"></td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><input type="number" value="<%= editRecords.phone %>" name="phone"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+</body>
+</html>

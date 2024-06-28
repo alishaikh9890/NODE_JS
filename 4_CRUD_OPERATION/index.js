@@ -8,7 +8,7 @@ app.use(express.urlencoded());
 
 app.set("view engine", "ejs")
 
-const studentData = [
+let studentData = [
     {
         userid : 11,
         name : "manthan",
@@ -30,7 +30,6 @@ const studentData = [
         password : "muzammil@123",
         phone : "2345678901"
     },
-
 ]
 
 app.get("/", (req, res) =>{
@@ -59,14 +58,41 @@ app.post("/insertData", (req,res) => {
     return res.redirect('back');
 })
 
-
 app.get("/deleteData", (req, res) =>{
-    let userId = req.query.userid;
+
+     let userId = req.query.userid;
     let ans = studentData.filter((item) => {
         return item.userid != userId;
     })
     studentData = ans;
     return res.redirect('back');
+})
+
+app.get("/editData", (req, res) => {
+    let userId = req.query.userid;
+
+    let data = studentData.filter((item) => {
+        return item.userid == userId;
+    })
+   return res.render("edit", {
+        editRecords : data[0]
+   })
+})
+
+app.post("/editData2", (req, res) => {
+
+    console.log(req.body);
+   let editId = req.body.editid;
+   let pos = studentData.findIndex((v,i)=>v.userid==req.body.editid);
+
+   if(pos != -1){
+       studentData[pos].name = req.body.name;
+       studentData[pos].email = req.body.email;
+       studentData[pos].password = req.body.password;
+       studentData[pos].phone = req.body.phone;
+   }
+
+    return res.redirect("/");
 })
 
 app.listen(port, (err) => {

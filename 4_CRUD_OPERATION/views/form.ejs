@@ -63,7 +63,10 @@
                     <td><%= val.email %></td>
                     <td><%= val.password %></td>
                     <td><%= val.phone %></td>
-                    <td><button><a href="/deleteData?userid=<%= val.userid %>">Delete</a></button></td>
+                    <td>
+                        <button><a href="/deleteData?userid=<%= val.userid %>">Delete</a></button> || 
+                        <button><a href="/editData?userid=<%= val.userid %>">Edit</a></button>
+                    </td>
                 </tr>
 
                 <% }) %>
