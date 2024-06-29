@@ -16,9 +16,9 @@
     <h1 align="center">Edit User</h1>
 
 
-    <form method="post" action="/editData2">
+    <form method="post" action="/insertData">
         <table border="1" align="center" >
-        <input  type="text" value="<%= editRecords.userid %>" name="editid">
+        <input  type="hidden" value="<%= editRecords.userid %>" name="editid">
             <tr>
                 <td>UserId</td>
                 <td><input disabled type="number" value="<%= editRecords.userid %>" name="userid"></td>
@@ -40,7 +40,7 @@
                 <td><input type="number" value="<%= editRecords.phone %>" name="phone"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit"></td>
+                <td colspan="2"><input value="Edit" type="submit"></td>
             </tr>
         </table>
 

@@ -40,22 +40,42 @@ app.get("/", (req, res) =>{
 
 app.post("/insertData", (req,res) => {
     
+    let editid = req.body.editid;
     let userid = req.body.userid;
+
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
     let phone = req.body.phone;
 
-    const obj = {
+    if(editid){
+        let result = studentData.filter((item) => {
+            if(item.userid == editid){
+                item.name = name,
+                item.email = email,
+                item.password = password,
+                item.phone = phone
+            }
+            return item;
+        })
+        console.log("record successfully edited")
+
+        studentData = result;
+        return res.redirect("/");
+    } else {
+        
+    let obj = {
         userid : userid,
         name : name,
         email : email,
         password : password,
         phone : phone
     }
-
-    studentData.push(obj)
+  studentData.push(obj)
     return res.redirect('back');
+    }
+
+  
 })
 
 app.get("/deleteData", (req, res) =>{
@@ -79,21 +99,19 @@ app.get("/editData", (req, res) => {
    })
 })
 
-app.post("/editData2", (req, res) => {
+// app.post("/editData2", (req, res) => {
+  
+//    let pos = studentData.findIndex((v,i)=>v.userid==req.body.editid);
 
-    console.log(req.body);
-   let editId = req.body.editid;
-   let pos = studentData.findIndex((v,i)=>v.userid==req.body.editid);
+//    if(pos != -1){
+//        studentData[pos].name = req.body.name;
+//        studentData[pos].email = req.body.email;
+//        studentData[pos].password = req.body.password;
+//        studentData[pos].phone = req.body.phone;
+//    }
 
-   if(pos != -1){
-       studentData[pos].name = req.body.name;
-       studentData[pos].email = req.body.email;
-       studentData[pos].password = req.body.password;
-       studentData[pos].phone = req.body.phone;
-   }
-
-    return res.redirect("/");
-})
+//     return res.redirect("/");
+// })
 
 app.listen(port, (err) => {
     if(err){
