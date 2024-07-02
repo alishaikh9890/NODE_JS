@@ -1,11 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    good morning all
-</body>
-</html>
+
+<form method="post" action="/inserData">
+    <h2>Registration</h2>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="number" name="phone"></td>
+        </tr>
+        <tr>
+            <td>city</td>
+            <td>
+                <select name="city" >
+                    <option>--Select City--</option>
+                    <% let city = ["latur", "pune", "bhavnagar", "surat", "Mumbai", "Delhi"]
+                        city.map((item) => {
+                    %>
+                            <option><%= item %></option>
+
+                    <%   }) %>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><input type="submit"></th>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+    <h2>user Data</h2>
+    <table border="">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+
+        <% record.map((item)=>{ %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.email %></td>
+                <td><%= item.password %></td>
+                <td><%= item.phone %></td>
+                <td><%= item.city %></td>
+                <td><button><a href="/deleteData?id=<%= item.id %>">Delete</a></button></td>
+            </tr>
+         <% }) %>
+
+  
+
+
+    </table>
+
+</form>
