@@ -1,0 +1,57 @@
+<form method="post" action="/inserData">
+    <h2>Edit Details</h2>
+   <input type="hidden" name="editid" value="<%= single.id %>">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" value="<%= single.name %>"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" value="<%= single.email %>"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="text" name="password" value="<%= single.password %>"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" <% if(single.gender == "Male") { %> checked <% } %> value="Male" name="gender">Male 
+                <input type="radio" <% if(single.gender == "Female") { %> checked <%} %> value="Female" name="gender">Female 
+                <input type="radio" value="other" name="gender">Others 
+            </td>
+        </tr>
+        <tr>
+            <td>Hobby</td>
+            <td>
+                <input type="checkbox"<% if(single.hobby.includes("Cricket") ){ %> checked <% } %> value="Cricket" name="hobby">Cricket 
+                <input type="checkbox" <% if(single.hobby.includes("Music") ){ %> checked <% } %> value="Music" name="hobby">Music 
+                <input type="checkbox" <% if(single.hobby.includes("Reading") ){ %> checked <% } %> value="Reading" name="hobby">Reading 
+            </td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="number" name="phone"></td>
+        </tr>
+        <tr>
+            <td>city</td>
+            <td>
+                <select name="city" >
+                    <option>--Select City--</option>
+                    <% let city = ["latur", "pune", "bhavnagar", "surat", "Mumbai", "Delhi"]
+                        city.map((item) => {
+                    %>
+                            <option <% if(single.city == item){ %> selected <% } %> ><%= item %></option>
+
+                    <%   }) %>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><input type="submit" value="Edit"></th>
+        </tr>
+    </table>
+
+    </form>

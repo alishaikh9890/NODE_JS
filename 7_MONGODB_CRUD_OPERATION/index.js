@@ -25,13 +25,36 @@ app.get("/", (req, res) => {
 })
 
 app.post("/inserData", (req, res) => {
-   const {name, email, password, phone, city} = req.body;
+    let editid = req.body.editid;
+   const {name, email, password, gender, hobby, phone, city} = req.body;
+
+   if(editid){
+    adminTbl.findByIdAndUpdate(editid, {
+        name : name,
+        email : email,
+        password : password,
+        gender : gender,
+        hobby : hobby,
+        phone : phone,
+        city : city
+    }).then((success) => {
+        console.log("Record successfully Edited !");
+        return res.redirect("/")
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+
+   }else{
+
    adminTbl.create({
     name : name,
     email : email,
     password : password,
+    gender : gender,
+    hobby : hobby,
     phone : phone,
-    city : city
+    city : city,
    }).then((data) => {
     console.log("record successfully insert")
     return res.redirect("/");
@@ -40,10 +63,13 @@ app.post("/inserData", (req, res) => {
     console.log(err);
     return false;
    })
+
+   }
+
 })
 
-app.get("/deleteData", (req, res)=>{
-    adminTbl.findByIdAndDelete(req.query.id)
+app.get("/deleteData/:id", (req, res)=>{
+    adminTbl.findByIdAndDelete(req.params.id)
     .then((data)=>{
         return res.redirect("/")
     }).catch((err)=>{
@@ -51,6 +77,40 @@ app.get("/deleteData", (req, res)=>{
         return false;
     })
 })
+
+app.get("/editData" , (req, res)=>{
+    let id = req.query.id;
+    adminTbl.findById(id).then((single) => {
+        return res.render("edit", {
+            single
+        })
+    }).catch((err) =>{
+        console.log(err);
+        return false;
+    })
+})
+
+
+// app.post("/updateData", (req, res)=>{
+//  let id = req.body.editid;
+//  const {name, email, password, gender, hobby, phone, city} = req.body;
+//     adminTbl.findByIdAndUpdate(id, {
+//         name : name,
+//         email : email,
+//         password : password,
+//         gender : gender,
+//         hobby : hobby,
+//         phone : phone,
+//         city : city
+//     }).then((success) => {
+//         console.log("Record successfully Edited !");
+//         return res.redirect("/")
+//     }).catch((err)=>{
+//         console.log(err);
+//         return false;
+//     })
+// })
+
 
 app.listen(port, (err) =>{
     if(err){

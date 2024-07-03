@@ -13,6 +13,14 @@ const adminSchema = mongoose.Schema({
         type : String,
         required : true
     },
+    gender : {
+        type : String,
+        required : true
+    },
+    hobby : {
+        type : Array,
+        required : true
+    },
     phone : {
         type : String,
         required : true

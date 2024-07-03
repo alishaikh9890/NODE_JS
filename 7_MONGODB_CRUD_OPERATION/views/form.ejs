@@ -15,6 +15,22 @@
             <td><input type="password" name="password"></td>
         </tr>
         <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" value="Male" name="gender">Male 
+                <input type="radio" value="Female" name="gender">Female 
+                <input type="radio" value="other" name="gender">Others 
+            </td>
+        </tr>
+        <tr>
+            <td>Hobby</td>
+            <td>
+                <input type="checkbox" value="Cricket" name="hobby">Cricket 
+                <input type="checkbox" value="Music" name="hobby">Music 
+                <input type="checkbox" value="Reading" name="hobby">Reading 
+            </td>
+        </tr>
+        <tr>
             <td>Phone</td>
             <td><input type="number" name="phone"></td>
         </tr>
@@ -45,6 +61,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
+            <th>Gender</th>
+            <th>Hobby</th>
             <th>Phone</th>
             <th>City</th>
             <th>Action</th>
@@ -55,9 +73,14 @@
                 <td><%= item.name %></td>
                 <td><%= item.email %></td>
                 <td><%= item.password %></td>
+                <td><%= item.gender %></td>
+                <td><%= item.hobby %></td>
                 <td><%= item.phone %></td>
                 <td><%= item.city %></td>
-                <td><button><a href="/deleteData?id=<%= item.id %>">Delete</a></button></td>
+                <td>
+                    <button><a href="/deleteData/<%= item.id %>">Delete</a></button> ||
+                    <button><a href="/editData?id=<%= item.id %>">Edit</a></button>
+                </td>
             </tr>
          <% }) %>
 
