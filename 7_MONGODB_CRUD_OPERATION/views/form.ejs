@@ -1,5 +1,5 @@
 
-<form method="post" action="/inserData">
+<form method="post" action="/inserData" enctype="multipart/form-data">
     <h2>Registration</h2>
     <table border="1">
         <tr>
@@ -43,10 +43,14 @@
                         city.map((item) => {
                     %>
                             <option><%= item %></option>
-
                     <%   }) %>
-
                 </select>
+            </td>
+        </tr>
+        <tr> 
+            <td>Image</td>
+            <td>
+                <input type="file" name="image" />
             </td>
         </tr>
         <tr>

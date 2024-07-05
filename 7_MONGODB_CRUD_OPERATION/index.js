@@ -8,9 +8,26 @@ const database = require("./config/database")
 
 const adminTbl = require("./models/adminTbl");
 
+const multer = require("multer")
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded()); // middleware
+
+
+// file upload start
+
+const fileupload = multer.diskStorage({
+    destination : (req, res, cd) => {
+        cd(null, "uploads/")
+    },
+    filename : (req, res, cd) => {
+        cd(null, file.originalname)
+    }
+})
+
+// file upload end
+
 
 app.get("/", (req, res) => {
     adminTbl.find({}).then((allData)=> {
