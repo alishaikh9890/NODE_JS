@@ -2,6 +2,10 @@ const express = require("express");
 
 const port = 9000;
 
+const path = require("path")
+
+const fs = require("fs");
+
 const app = express();
 
 const database = require("./config/database")
@@ -12,8 +16,9 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded()); // middleware
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
-const multer = require("multer")
+const multer = require("multer");
 
 // file upload start
 
@@ -45,28 +50,67 @@ app.get("/", (req, res) => {
 
 app.post("/insertData", ImageUpload, (req, res) => {
     let editid = req.body.editid;
-   const {name, email, password, gender, hobby, phone, city, image} = req.body;
+   const {name, email, password, gender, hobby, phone, city} = req.body;
 
    if(editid){
-    adminTbl.findByIdAndUpdate(editid, {
-        name : name,
-        email : email,
-        password : password,
-        gender : gender,
-        hobby : hobby,
-        phone : phone,
-        city : city
-    }).then((success) => {
-        console.log("Record successfully Edited !");
-        return res.redirect("/")
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
+
+    if(req.file){
+        
+        adminTbl.findById(editid).then((oldimage) => {
+            fs.unlinkSync(oldimage.image);
+            let image = req.file.path;
+            adminTbl.findByIdAndUpdate(editid, {
+                name : name,
+                email : email,
+                password : password,
+                gender : gender,
+                hobby : hobby,
+                phone : phone,
+                city : city,
+                image : image
+            }).then((success) => {
+                console.log("Record successfully Edited !");
+                return res.redirect("/")
+            }).catch((err)=>{
+                console.log(err);
+                return false;
+            })
+        }).catch((err)=>{
+            console.log(err);
+            return false;
+        })
+    }
+    else{
+       adminTbl.findById(editid).then((oldRecord)=>{
+        adminTbl.findByIdAndUpdate(editid, {
+            name : name,
+            email : email,
+            password : password,
+            gender : gender,
+            hobby : hobby,
+            phone : phone,
+            city : city,
+            image : oldRecord.image
+        }).then((success) => {
+            console.log("Record successfully Edited !");
+            return res.redirect("/")
+        }).catch((err)=>{
+            console.log(err);
+            return false;
+        })
+       }).catch((err)=>{
+        if(err){
+            console.log(err);
+            return false;
+        }
+       })
+    }
+
+
+    
 
    }else{
 
-    console.log(req.file)
     let image =""
     if(req.file){
         image = req.file.path
@@ -93,6 +137,16 @@ app.post("/insertData", ImageUpload, (req, res) => {
 })
 
 app.get("/deleteData/:id", (req, res)=>{
+
+   let id = req.params.id
+
+    adminTbl.findById(id).then((singlerecord)=>{
+        fs.unlinkSync(singlerecord.image)
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+
     adminTbl.findByIdAndDelete(req.params.id)
     .then((data)=>{
         return res.redirect("/")

@@ -69,6 +69,7 @@
             <th>Hobby</th>
             <th>Phone</th>
             <th>City</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
 
@@ -81,6 +82,9 @@
                 <td><%= item.hobby %></td>
                 <td><%= item.phone %></td>
                 <td><%= item.city %></td>
+                <td>
+                    <img src="<%= item.image %>" width="100" alt=""/>
+                </td>
                 <td>
                     <button><a href="/deleteData/<%= item.id %>">Delete</a></button> ||
                     <button><a href="/editData?id=<%= item.id %>">Edit</a></button>
