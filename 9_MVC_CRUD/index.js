@@ -6,7 +6,12 @@ const app = express();
 
 const db = require("./config/database")
 
-app.set("view engine", "ejs")
+
+app.set("view engine", "ejs");
+
+app.use(express.urlencoded())
+
+app.use("/", require("./routes")); 
 
 app.listen(port, (err)=>{
     if(err){

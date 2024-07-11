@@ -55,7 +55,6 @@ app.post("/insertData", ImageUpload, (req, res) => {
    if(editid){
 
     if(req.file){
-        
         adminTbl.findById(editid).then((oldimage) => {
             fs.unlinkSync(oldimage.image);
             let image = req.file.path;

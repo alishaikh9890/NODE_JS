@@ -26,7 +26,11 @@ const crudSchema = mongoose.Schema({
         required : true
     },
     image : {
-        type : String,
+        type : String ,
         required : true
     },
-})
+});
+
+const crud= mongoose.model("crud", crudSchema);
+
+module.exports = crud;

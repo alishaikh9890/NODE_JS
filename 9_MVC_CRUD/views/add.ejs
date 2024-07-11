@@ -1,0 +1,62 @@
+<form method="post" action="/insertData" enctype="multipart/form-data">
+
+    <table border="1"  >
+        <tr>
+            <th>Name:</th>
+            <td><input type="text" name="name"/></td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td><input type="email" name="email"/></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><input type="text" name="password"/></td>
+        </tr>
+        <tr>
+            <th>Gender:</th>
+            <td>
+                <input type="radio" value="Male" name="gender"/>Male
+                <input type="radio" value="Female" name="gender"/>Female
+                <input type="radio" value="other" name="gender"/>Other
+            </td>
+        </tr>
+        <tr>
+            <th>Hobbies:</th>
+            <td>
+                <input type="checkbox" value="Reading" name="hobby"/>Reading
+                <input type="checkbox" value="Music" name="hobby"/>Music
+                <input type="checkbox" value="Travelling" name="hobby"/>Traveling
+                <input type="checkbox" value="Movies" name="hobby"/>Movies
+                <input type="checkbox" value="Sport" name="hobby"/>Sport
+            </td>
+        </tr>
+        <tr>
+            <th>City: </th>
+            <td>
+                <select style="width: 100%" name="city" >
+                    <option value="">---select---</option>
+                    <%
+                        let city = ["Pune", "Mumbai", "Surat", "Delhi", "Bangalore", "Chenai", "Ahmedabad"];
+                        city.map((item)=>{
+                    %>
+                            <option value="<%= item %>"><%= item %></option>
+                    <%
+                        })
+                    %>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><input type="file" name="image"></td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button type="submit">Submit</button>
+            </th>
+        
+        </tr>
+    </table>
+        
+</form>
