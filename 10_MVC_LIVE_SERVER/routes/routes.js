@@ -1,11 +1,10 @@
 
-const {Router} = require("express");
-const {Home, signup} = require("../controllers/user.controller");
+const {Router} = require("express")
 
 const router = Router();
 
-router.get("/", Home);
+router.get("/", (req,res) => {
+    res.send("working")
+})
 
-router.post("/signup", signup)
-
-module.exports = {router};  
+module.exports = router   
