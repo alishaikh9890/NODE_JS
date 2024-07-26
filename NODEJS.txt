@@ -1,0 +1,57 @@
+REPL / GLOBAL OBJECTS
+- REPL Concepts
+- Global Objects
+
+
+REPL Concept
+
+Read - Reads user's input, parses the input into JavaScript data-structure, and store in memory.
+
+Eval - Takes and evaluates the data structure. 
+
+Print - Prints the result.
+
+Loop - Loops the above command until the user presses ctrl-c twice.
+
+open terminal and write node.
+
+
+
+
+
+NODE JS MODULESA
+
+core Modules,
+Local Modules,
+third party modules
+
+Core Module:
+Node.js has many built-in modules that are part of the platform and come with Node.js installation.
+these modules can be loaded into the program by using the required function.
+
+core Modules Types
+http :- creates and HTTP server in Node.js.
+fs :- used to handle file system.
+path :- includes methods to deal with file paths.
+querystring:- utility used for parsing and formatting URL Query strings.
+Url :- module provides utilites for URL resolution and parsing.
+
+Local Module:-
+local modules are modules created locally in your Node.js application. these modules include different functionalities of your application in separate fields and folders
+
+Example:- const welcome = {
+
+	sayHello: function(){
+		console.log("hello Red and White");
+	},
+
+	currTime: New Date().toLocaleDateString(),
+
+	companyName: "RED AND WHITE"
+	}
+module.exports = welcome
+
+
+
+
+
