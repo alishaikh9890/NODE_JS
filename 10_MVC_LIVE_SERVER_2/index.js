@@ -5,7 +5,7 @@ const db = require("./config/db");
 
 const app = express();
 app.use(express.json())
-app.use(router);
+app.use("/user",router);
 
 
 app.get("/index", (req, res)=>{

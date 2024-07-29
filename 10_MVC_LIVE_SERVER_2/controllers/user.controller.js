@@ -11,4 +11,21 @@ const signup = async(req, res)=>{
     res.send(data);
 }
 
-module.exports = {Home, signup};
+const update = async(req, res) => {
+  let {id} = req.params;
+   await user.findByIdAndUpdate(id, req.body);
+   res.send("updated")
+}
+
+const remove = async(req, res) => {
+  let {id} = req.params;
+  try{
+     await user.findByIdAndDelete(id);
+  res.send("deleted")
+  }
+  catch(error) {
+    res.send("err", error)
+  }
+}
+
+module.exports = {Home, signup, update, remove};
