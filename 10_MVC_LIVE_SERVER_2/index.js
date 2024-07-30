@@ -2,15 +2,16 @@ const express = require("express");
 const {router} = require("./routes/routes");
 const port = 8050;
 const db = require("./config/db");
+const cookies = require("cookie-parser");
 
 const app = express();
-app.use(express.json())
+app.use(cookies())
+app.use(express.json());
+
+app.set("view engine", "ejs");
+app.set("views", __dirname+"/view");
+app.use(express.static(__dirname+"/public"))
 app.use("/user",router);
-
-
-app.get("/index", (req, res)=>{
-    res.sendFile(__dirname+"/view/index.html");
-})
 
 app.listen(port, (err)=>{
     if(err){
