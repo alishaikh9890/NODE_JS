@@ -1,3 +1,5 @@
+const user = require("../models/user.schema");
+
 const valid = (req, res, next) =>{
     let {username, password, email, number} = req.body;
     
@@ -9,6 +11,19 @@ const valid = (req, res, next) =>{
         res.status(400).send("not valid data")
     }
 }
+   
+const isAuth = async(req, res, next)=>{
 
+    let{logged} = req.cookies;
 
-module.exports = valid
+    if(logged){
+        let data = await user.findById(logged);
+        console.log(data)
+        next();
+    }
+    else{
+        res.render("/user/signup")
+    }
+};
+
+module.exports = {valid, isAuth}

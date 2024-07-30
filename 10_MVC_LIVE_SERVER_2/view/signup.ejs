@@ -67,7 +67,7 @@
               /></span>
             </div>
             <!-- Form -->
-            <form class="form-horizontal mt-3" action="index.html">
+            <form class="form-horizontal mt-3" action="/user/signup" method="post">
               <div class="row pb-4">
                 <div class="col-12">
                   <div class="input-group mb-3">
@@ -84,6 +84,7 @@
                       placeholder="Username"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
+                      name="username"
                       required
                     />
                   </div>
@@ -102,6 +103,7 @@
                       placeholder="Email Address"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
+                      name="email"
                       required
                     />
                   </div>
@@ -119,26 +121,11 @@
                       placeholder="Password"
                       aria-label="Password"
                       aria-describedby="basic-addon1"
+                      name="password"
                       required
                     />
                   </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span
-                        class="input-group-text bg-info text-white h-100"
-                        id="basic-addon2"
-                        ><i class="mdi mdi-lock fs-4"></i
-                      ></span>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control form-control-lg"
-                      placeholder=" Confirm Password"
-                      aria-label="Password"
-                      aria-describedby="basic-addon1"
-                      required
-                    />
-                  </div>
+                 
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span
@@ -148,11 +135,12 @@
                       ></span>
                     </div>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control form-control-lg"
                       placeholder="Number"
                       aria-label="Password"
                       aria-describedby="basic-addon1"
+                      name="number"
                       required
                     />
                   </div>

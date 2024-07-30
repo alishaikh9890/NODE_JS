@@ -1,11 +1,11 @@
 
 const {Router} = require("express");
 const{ Home, signup, update, remove, ui, getsignup} = require("../controllers/user.controller");
-const valid = require("../middlewares/user.middleware");
+const {valid, isAuth} = require("../middlewares/user.middleware");
 
 const router = Router();
 
-router.get("/user",Home)
+router.get("/user",isAuth,Home)
 
 router.post("/signup", valid, signup);
 

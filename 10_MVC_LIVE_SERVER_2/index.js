@@ -5,7 +5,8 @@ const db = require("./config/db");
 const cookies = require("cookie-parser");
 
 const app = express();
-app.use(cookies())
+app.use(cookies());
+app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 
 app.set("view engine", "ejs");

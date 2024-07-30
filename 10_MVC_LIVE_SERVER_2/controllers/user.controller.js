@@ -8,7 +8,7 @@ const Home = async(req,res)=>{
 const signup = async(req, res)=>{
     console.log(req.body);
     let data = await user.create(req.body)
-    res.send(data);
+    res.cookie("logged", data.id).send(data);
 }
 
 const update = async(req, res) => {
