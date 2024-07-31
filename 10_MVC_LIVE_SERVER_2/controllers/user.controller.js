@@ -37,4 +37,19 @@ const getsignup = (req, res)=>{
   res.render("signup");
 }
 
-module.exports = {Home, signup, update, remove, ui, getsignup};
+const login = async(req, res) =>{
+  let {email, password} = req.body;
+
+  let data = await user.findOne({email: email});
+
+  if(!data){
+    return res.send("Invalid Email Id");
+  }
+  if(data.password  != password){
+    return res.send('wrong password')
+  }
+  console.log(data);
+  return res.send("logged in")
+}
+
+module.exports = {Home, signup, update, remove, ui, getsignup, login};
