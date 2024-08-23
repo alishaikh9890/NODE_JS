@@ -11,6 +11,9 @@ app.use(session({secret:"private-key"}));
 const passport = require("passport");
 const LocalAuth = require("./middlewares/LocalAuth");
 LocalAuth(passport)
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 

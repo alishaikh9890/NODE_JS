@@ -52,4 +52,9 @@ const login = async(req, res) =>{
   return res.send("logged in")
 }
 
-module.exports = {Home, signup, update, remove, ui, getsignup, login};
+
+const Local = (req, res) => {
+  res.send("logged in");
+}
+
+module.exports = {Home, signup, update, remove, ui, getsignup, login, Local};
