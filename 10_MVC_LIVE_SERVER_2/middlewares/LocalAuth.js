@@ -21,7 +21,6 @@ const LocalAuth = (passport) =>{
             return done(error, false)
        }
 
-      
     })
  );
 

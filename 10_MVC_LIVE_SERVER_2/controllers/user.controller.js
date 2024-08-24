@@ -53,8 +53,27 @@ const login = async(req, res) =>{
 }
 
 
+// ---  passport js ---  //
+
 const Local = (req, res) => {
-  res.send("logged in");
+  res.send("logged in by passport js");
 }
 
-module.exports = {Home, signup, update, remove, ui, getsignup, login, Local};
+const LoginPage = (req, res) => {
+  res.render("login")
+}
+
+const profile = (req, res) =>{
+  res.send(req.user)
+}
+
+
+const logout = (req, res) =>{
+  req.logOut((err)=>{
+    if(err){
+      console.log(err)
+    }
+    res.send("logout")
+  });
+};
+module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout};
