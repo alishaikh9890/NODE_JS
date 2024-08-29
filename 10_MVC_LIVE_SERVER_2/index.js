@@ -10,17 +10,19 @@ app.use(cookies());
 app.use(session({secret:"private-key"}));
 const passport = require("passport");
 const LocalAuth = require("./middlewares/LocalAuth");
+const P_router = require("./routes/product.route");
 LocalAuth(passport)
 
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.set("view engine", "ejs");
 app.set("views", __dirname+"/view");
-app.use(express.static(__dirname+"/public"))
+app.use(express.static(__dirname+"/public"));
 app.use("/user",router);
+app.use("/product", P_router);
 
 app.listen(port, (err)=>{
     if(err){

@@ -19,7 +19,7 @@ router.get("/", ui)
 
 router.get("/signup",getsignup)
 
-router.post("/login", login)
+router.post("/login", login) 
 
 router.post("/local",passport.authenticate("local",{successRedirect: "/user", failureRedirect:"/user/login"}), Local)
 
