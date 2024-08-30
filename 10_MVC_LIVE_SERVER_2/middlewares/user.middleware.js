@@ -3,8 +3,9 @@ const user = require("../models/user.schema");
 const valid = (req, res, next) =>{
     let {username, password, email, number} = req.body;
     
-    if(username&&password&& number && email) {
-        return next()
+    if(username&&password&& number && email)
+    {
+        return next();
     }
     else 
     {

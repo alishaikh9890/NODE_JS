@@ -63,8 +63,7 @@ const LoginPage = (req, res) => {
   res.render("login")
 }
 
-
-const profile = (req, res) => {
+const profile = (req, res) =>{
   res.send(req.user)
 }
 
