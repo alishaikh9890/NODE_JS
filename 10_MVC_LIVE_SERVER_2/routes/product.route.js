@@ -5,6 +5,6 @@ const P_router = Router();
 
 P_router.get("/",data)
 
-P_router.post("/create",createData )
+P_router.post("/create",createData)
 
 module.exports = P_router;
