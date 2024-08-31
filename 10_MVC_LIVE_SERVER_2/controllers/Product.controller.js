@@ -11,9 +11,19 @@ const createData = async (req, res) =>{
 }
 
 const deleteData = async (req, res) =>{
-    res.send(req.params)
-//    let data = await Product.findByIdAndDelete(req.body.id);
-//    res.send("deleted successfull")
+    let {id} = req.params;
+    let data = await Product.findByIdAndDelete(id);
+    res.json({deleted:true, data})
 }
 
-module.exports = {data, createData, deleteData} 
+const updateData = async (req, res) => {
+    let {id} = req.params;
+    let data = await Product.findByIdAndUpdate(id, req.body);
+    res.send(updated)
+}
+
+const addProduct = (req, res) => {
+     return res.render("product")
+}
+
+module.exports = {data, createData, deleteData, updateData, addProduct} 
