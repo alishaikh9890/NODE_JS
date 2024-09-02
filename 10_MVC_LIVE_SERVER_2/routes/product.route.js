@@ -9,8 +9,8 @@ P_router.post("/create",createData)
 
 P_router.delete("/delete/:id", deleteData)
 
-P_router.patch("update/:id", updateData);
+P_router.patch("/update/:id", updateData);
 
 P_router.get("/", addProduct)
 
-module.exports = P_router;
+module.exports = P_router;  

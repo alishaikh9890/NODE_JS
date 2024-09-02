@@ -4,16 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Products</title>
+
+    <style>
+
+    #prod{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:20px;
+    }
+        #prod > div{
+            /* border: 1px solid red; */
+        }
+       #prod > div >  img{
+            max-width: 200px;
+          
+        }
+    </style>
+
 </head>
 <body>
     
-    <form action="/product/create" method="post">
-        <input type="text" name="title" placeholder="title">
-        <input type="number" name="price" placeholder="price">
-        <input type="text" name="description" placeholder="descrption">
-        <input type="url" name="img" placeholder="Enter image">
+    <form id="form">
+        <input type="text" name="title" placeholder="title" id="title">
+        <input type="number" name="price" placeholder="price" id="price">
+        <input type="text" name="description" placeholder="descrption" id="description">
+        <input type="url" name="img" placeholder="Enter image" id="image">
         <button>Submit</button>
     </form>
 
+    <div id="prod"></div>
+
 </body>
+
+<script>
+
+
+const Add = (product) => {
+    fetch("/product/create", {
+        method: "POST",
+        headers: { "Content-Type" : "application/json"},
+        body: JSON.stringify(product)
+    });
+    }
+
+    document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault()
+        let product = {
+            title : document.querySelector("#title").value,
+            price : document.querySelector("#price").value,
+            description : document.querySelector("#description").value,
+            img : document.querySelector("#image").value
+        }
+
+        console.log(product)
+        Add(product)
+    })
+
+
+    const handlDelete = (id) => {
+        console.log(id)
+    }
+    
+const uimaker = (data) => {
+    let prod = document.getElementById("prod");
+    data.map((ele) => {
+        let div = document.createElement("div");
+        let img = document.createElement("img");
+        img.src=ele.img;
+        let title = document.createElement("h2");
+        title.textContent = ele.title;
+        let price = document.createElement("h3");
+        price.textContent = ele.price;
+        let description = document.createElement("p");
+        description.textContent = ele.description;
+        let btn1 = document.createElement("button");
+        btn1.textContent="Edit"
+        let btn2 = document.createElement("button");
+        btn2.textContent="Delete"
+
+        btn2.addEventListener("click" , () => handlDelete(ele._id))
+
+        div.append(img, title, price, description, btn1, btn2)
+      
+        prod.append(div)
+    })
+}
+
+
+    const get = async () => {
+    let req = await fetch("/product/products");
+    let res = await req.json();
+    console.log(res);
+
+    uimaker(res)
+    }
+    get();
+
+</script>
 </html>

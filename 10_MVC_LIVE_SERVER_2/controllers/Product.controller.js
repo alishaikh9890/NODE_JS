@@ -19,7 +19,7 @@ const deleteData = async (req, res) =>{
 const updateData = async (req, res) => {
     let {id} = req.params;
     let data = await Product.findByIdAndUpdate(id, req.body);
-    res.send(updated)
+    res.send(data)
 }
 
 const addProduct = (req, res) => {
