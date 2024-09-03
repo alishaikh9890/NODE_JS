@@ -29,7 +29,7 @@
         <input type="number" name="price" placeholder="price" id="price">
         <input type="text" name="description" placeholder="descrption" id="description">
         <input type="url" name="img" placeholder="Enter image" id="image">
-        <button>Submit</button>
+        <input type="submit" value="Post" id="type">
     </form>
 
     <div id="prod"></div>
@@ -38,13 +38,22 @@
 
 <script>
 
+let id = -1;
 
 const Add = (product) => {
     fetch("/product/create", {
         method: "POST",
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify(product)
-    });
+    }).then(() => get());
+    }
+
+    const Update = (data) => {
+        fetch(`/product/update/${id}`, {
+            method: "PATCH",
+            headers : { "Content-Type" : "application/json"},
+            body: JSON.stringify(data)
+        }).then(() => get())
     }
 
     document.getElementById("form").addEventListener("submit", (e) => {
@@ -56,17 +65,39 @@ const Add = (product) => {
             img : document.querySelector("#image").value
         }
 
-        console.log(product)
-        Add(product)
+        // console.log(product)
+        let type = document.querySelector("#type").value;
+        if(type == "Post"){
+            Add(product)
+        }
+        else{
+            Update(product)
+        }
+       
     })
 
 
     const handlDelete = (id) => {
-        console.log(id)
+     fetch(`/product/delete/${id}`, {
+        method: "DELETE"
+     }).then(() => get())
     }
+
+    const handleEdit = (data) => {
+        document.querySelector("#title").value = data.title,
+        document.querySelector("#price").value = data.price,
+        document.querySelector("#description").value = data.description,
+        document.querySelector("#image").value = data.img,
+        document.querySelector("#type").value = "Update"
+        id = data._id
+    }
+
     
 const uimaker = (data) => {
+
+
     let prod = document.getElementById("prod");
+    prod.innerHTML = " "
     data.map((ele) => {
         let div = document.createElement("div");
         let img = document.createElement("img");
@@ -79,9 +110,10 @@ const uimaker = (data) => {
         description.textContent = ele.description;
         let btn1 = document.createElement("button");
         btn1.textContent="Edit"
+        btn1.addEventListener("click", () => handleEdit(ele))
+
         let btn2 = document.createElement("button");
         btn2.textContent="Delete"
-
         btn2.addEventListener("click" , () => handlDelete(ele._id))
 
         div.append(img, title, price, description, btn1, btn2)
