@@ -15,7 +15,7 @@ const valid = (req, res, next) =>{
    
 const isAuth = async(req, res, next)=>{
 
-    let{logged} = req.cookies;
+    let {logged} = req.cookies;
 
     if(logged){
         let data = await user.findById(logged);
@@ -23,7 +23,7 @@ const isAuth = async(req, res, next)=>{
         next();
     }
     else{
-        res.render("/user/signup")
+        res.redirect("/user/signup")
     }
 };
 

@@ -76,4 +76,25 @@ const logout = (req, res) =>{
     res.send("logout")
   });
 };
-module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout};
+
+
+const forget = async(req, res) =>{
+  let {id} = req.params;
+  let {email, password, newPassword} = req.body;
+
+  let data = await user.findOne({email : email});
+  if(!data){
+    return res.send("invalid Email Id")
+  }
+  if(data.password != password){
+    return res.send("Wrong password")
+  }
+
+  let User = await user.findByIdAndUpdate(id, {password:newPassword})
+
+  res.send(User)
+}
+
+
+
+module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget};
