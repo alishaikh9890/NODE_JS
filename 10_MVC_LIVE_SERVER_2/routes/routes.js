@@ -33,4 +33,6 @@ router.get("/logout", logout)
 
 router.patch("/forget/:id", forget)
 
+router.patch("/password", )
+
 module.exports ={router};
