@@ -91,10 +91,22 @@ const forget = async(req, res) =>{
   }
 
   let User = await user.findByIdAndUpdate(id, {password:newPassword})
-
   res.send(User)
 }
 
 
+const resent = async(req, res) => {
 
-module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget};
+  let {password} = req.body;
+
+  await user.findByIdAndUpdate(req.user.id, {password: password})
+  res.send("updated password")
+
+}
+
+
+const resetPage = (req, res) => {
+  res.render("password")
+}
+
+module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage};
