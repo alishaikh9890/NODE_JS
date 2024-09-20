@@ -4,13 +4,17 @@ const port = 8050;
 const db = require("./config/db");
 const cookies = require("cookie-parser");
 const session = require("express-session");
-
-const app = express();
-app.use(cookies());
-app.use(session({secret:"private-key"}));
+const flash = require("connect-flash")
 const passport = require("passport");
 const LocalAuth = require("./middlewares/LocalAuth");
 const P_router = require("./routes/product.route");
+const app = express();
+
+
+
+app.use(cookies());
+app.use(session({secret:"private-key"}));
+app.use(flash())
 LocalAuth(passport)
 
 app.use(passport.initialize())

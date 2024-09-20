@@ -32,6 +32,8 @@
         <input type="submit" value="Post" id="type">
     </form>
 
+    <h3><%= info[0] %></h3>
+
     <div id="prod"></div>
 
 </body>
@@ -46,6 +48,10 @@ const Add = (product) => {
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify(product)
     }).then(() => get());
+
+    setTimeout(() => {
+        window.location.reload()
+    }, 200)
     }
 
     const Update = (data) => {
@@ -53,7 +59,11 @@ const Add = (product) => {
             method: "PATCH",
             headers : { "Content-Type" : "application/json"},
             body: JSON.stringify(data)
-        }).then(() => get())
+        }).then(() => get());
+        
+        setTimeout(() => {
+        window.location.reload()
+    }, 200)
     }
 
     document.getElementById("form").addEventListener("submit", (e) => {
@@ -80,7 +90,11 @@ const Add = (product) => {
     const handlDelete = (id) => {
      fetch(`/product/delete/${id}`, {
         method: "DELETE"
-     }).then(() => get())
+     }).then(() => get());
+
+     setTimeout(() => {
+        window.location.reload()
+    }, 200)
     }
 
     const handleEdit = (data) => {
