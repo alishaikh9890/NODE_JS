@@ -1,4 +1,5 @@
 const user = require("../models/user.schema");
+const mailer = require("../helper/mail");
 
 const Home = async(req,res)=>{
   let data = await user.find();
@@ -104,9 +105,38 @@ const resent = async(req, res) => {
 
 }
 
-
 const resetPage = (req, res) => {
   res.render("password")
 }
 
-module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage};
+let otp = Math.floor(Math.random()*100000);
+const passwordReset = (req, res) =>{
+    const mail = mailer();
+    const mailOptions ={
+        from :"rwbn1.alishan.as@gmail.com",
+        to : req.body.email,
+        subject: "password reset",
+        html: `OTP : ${otp}`
+    }
+    mail.sendMail(mailOptions,(err,info) =>{
+      if(err){
+        console.log(err)
+      }
+      else{
+        console.log(info)
+      }
+    })
+    res.send("sending mail")
+}
+
+const verify = (req, res) =>{
+  let token = req.body.otp;
+  if(token == otp){
+    res.send("verify")
+  }
+  else{
+    res.send("wrong otp")
+  }
+}
+
+module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage, passwordReset, verify};

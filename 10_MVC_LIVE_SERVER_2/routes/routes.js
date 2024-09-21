@@ -1,5 +1,5 @@
 const {Router} = require("express");
-const{ Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage} = require("../controllers/user.controller");
+const{ Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage, passwordReset, verify} = require("../controllers/user.controller");
 const {valid, isAuth} = require("../middlewares/user.middleware");
 const Auth = require("../middlewares/isAuth");
 const passport = require("passport");
@@ -35,5 +35,9 @@ router.patch("/forget/:id", forget)
 router.post("/password", Auth, resent);
 
 router.get("/reset",Auth, resetPage)
+
+router.post("/forget", passwordReset)
+
+router.post("/verify",verify)
 
 module.exports ={router};
