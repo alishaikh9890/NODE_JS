@@ -7,34 +7,73 @@
 
     <style>
 
+        .container{
+            max-width: 1320px;
+            margin: auto;
+        }
     #prod{
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(5,1fr);
         gap:20px;
     }
         #prod > div{
             /* border: 1px solid red; */
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            font-family: arial;
         }
        #prod > div >  img{
             max-width: 200px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
           
         }
-    </style>
+
+        #form{
+            border: 1px solid red;
+            text-align: center;
+            padding: 20px;
+        }
+        #form input{
+            padding: 10px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            margin: 0px 10px;
+            border-radius: 5px;
+        }
+
+        .h3{
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            width: fit-content;
+           position: fixed;
+           right: 100px;
+           top:100px;
+            margin: auto;
+        }
+            
+            </style>
 
 </head>
-<body>
+<body >
     
-    <form id="form">
-        <input type="text" name="title" placeholder="title" id="title">
-        <input type="number" name="price" placeholder="price" id="price">
-        <input type="text" name="description" placeholder="descrption" id="description">
-        <input type="url" name="img" placeholder="Enter image" id="image">
-        <input type="submit" value="Post" id="type">
-    </form>
+    <div class="container">
+        <form id="form">
+            <input type="text" name="title" placeholder="title" id="title">
+            <input type="number" name="price" placeholder="price" id="price">
+            <input type="text" name="description" placeholder="descrption" id="description">
+            <input type="url" name="img" placeholder="Enter image" id="image">
+            <br/>
+            <br/>
+            <input type="submit" value="Post" id="type">
+        </form>
 
-    <h3><%= info[0] %></h3>
+        <h3 class="h3"><%= info[0] %></h3>
 
-    <div id="prod"></div>
+        <div id="prod"></div>
+    </div>
+    
 
 </body>
 
@@ -51,7 +90,7 @@ const Add = (product) => {
 
     setTimeout(() => {
         window.location.reload()
-    }, 200)
+    }, 500)
     }
 
     const Update = (data) => {
@@ -63,7 +102,7 @@ const Add = (product) => {
         
         setTimeout(() => {
         window.location.reload()
-    }, 200)
+    }, 500)
     }
 
     document.getElementById("form").addEventListener("submit", (e) => {
@@ -94,7 +133,7 @@ const Add = (product) => {
 
      setTimeout(() => {
         window.location.reload()
-    }, 200)
+    }, 500)
     }
 
     const handleEdit = (data) => {
