@@ -103,7 +103,7 @@ const resent = async(req, res) => {
   await user.findByIdAndUpdate(req.user.id, {password: password})
   res.send("updated password")
 
-}
+} 
 
 const resetPage = (req, res) => {
   res.render("password")

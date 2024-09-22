@@ -8,6 +8,8 @@ const flash = require("connect-flash")
 const passport = require("passport");
 const LocalAuth = require("./middlewares/LocalAuth");
 const P_router = require("./routes/product.route");
+const catRouter = require("./routes/category.route");
+const subCat = require("./routes/subCategory.route");
 const app = express();
 
 
@@ -27,6 +29,8 @@ app.set("views", __dirname+"/view");
 app.use(express.static(__dirname+"/public"));
 app.use("/user",router);
 app.use("/product", P_router);
+app.use("/category", catRouter);
+app.use("/subCategory", subCat)
 
 app.listen(port, (err)=>{
     if(err){
