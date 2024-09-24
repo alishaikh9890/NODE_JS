@@ -3,7 +3,6 @@ const { sub_create } = require("../controllers/subCategory.controller");
 
 const subCat = Router();
 
-
 subCat.post("/create",sub_create)
 
 
