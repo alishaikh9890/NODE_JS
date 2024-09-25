@@ -1,3 +1,4 @@
+const { assign } = require("nodemailer/lib/shared");
 const subCategory = require("../models/subCategory.schema")
 
 const sub_create = async (req, res) =>{
@@ -7,7 +8,11 @@ const sub_create = async (req, res) =>{
     } catch (error) {
         res.send(error.message)
     }
-  
 }
 
-module.exports = {sub_create}
+const getSub = async (req, res) =>{
+    let data = await subCategory.find();
+    res.send(data)
+}
+
+module.exports = {sub_create, getSub}

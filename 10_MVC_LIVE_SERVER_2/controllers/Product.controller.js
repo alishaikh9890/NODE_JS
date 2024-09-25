@@ -16,7 +16,6 @@ const deleteData = async (req, res) =>{
     let data = await Product.findByIdAndDelete(id);
     req.flash("info", " 🗑️ Product Deleted Successfully ")
     res.json({deleted:true, data})
-    
 }
 
 const updateData = async (req, res) => {
