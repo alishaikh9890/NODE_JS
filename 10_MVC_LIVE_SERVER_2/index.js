@@ -10,6 +10,7 @@ const LocalAuth = require("./middlewares/LocalAuth");
 const P_router = require("./routes/product.route");
 const catRouter = require("./routes/category.route");
 const subCat = require("./routes/subCategory.route");
+const extra = require("./routes/extracategory.route");
 const app = express();
 
 
@@ -31,6 +32,7 @@ app.use("/user",router);
 app.use("/product", P_router);
 app.use("/category", catRouter);
 app.use("/subCategory", subCat)
+app.use("/extra", extra)
 
 app.listen(port, (err)=>{
     if(err){

@@ -15,4 +15,12 @@ const getSub = async (req, res) =>{
     res.send(data)
 }
 
-module.exports = {sub_create, getSub}
+const subUpdate = async(req,res) =>{
+    let {id} = req.params;
+    let data = await subCategory.find(id);
+    data.extraId = req.body.extraId;
+    data.save();
+    res.send(data);
+}
+
+module.exports = {sub_create, getSub, subUpdate}

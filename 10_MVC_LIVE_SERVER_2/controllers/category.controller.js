@@ -14,7 +14,7 @@ const category = require("../models/category.schema")
  } 
 
  const getCategory = async (req, res) =>{
-   let data = await category.find();
+   let data = await category.find().populate("subcategoryId");
    res.send(data);
  }
 
