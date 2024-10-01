@@ -5,7 +5,7 @@ const subCat = Router();
 
 subCat.post("/create",sub_create)
 
-subCat.get("/get", getSub);
+subCat.get("/getSub", getSub);
 
 subCat.patch("/update/:id", subUpdate)
 

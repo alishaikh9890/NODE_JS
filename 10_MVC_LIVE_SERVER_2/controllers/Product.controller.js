@@ -1,7 +1,7 @@
 const Product = require("../models/Product.schema")
 
 const data = async (req, res) => {
-    let P_data = await Product.find()
+    let P_data = await Product.find().populate("categoryId").populate("subcategoryId").populate("extraId")
     res.send(P_data)
 }
 

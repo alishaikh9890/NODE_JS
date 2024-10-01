@@ -64,6 +64,15 @@
             <input type="number" name="price" placeholder="price" id="price">
             <input type="text" name="description" placeholder="descrption" id="description">
             <input type="url" name="img" placeholder="Enter image" id="image">
+            <select name="" id="category">
+                <option value="66f01f68265ddd175f18c29c">Eletronics</option>
+            </select>
+            <select name="" id="subcategory">
+                <option value="66f0277dd1c38be6f955e0e0">Mobiles</option>
+            </select>
+            <select name="" id="extracategory">
+                <option value="66fa162d6ed7c5971202ff5d">Smart Phones</option>
+            </select>
             <br/>
             <br/>
             <input type="submit" value="Post" id="type">
@@ -111,8 +120,11 @@ const Add = (product) => {
             title : document.querySelector("#title").value,
             price : document.querySelector("#price").value,
             description : document.querySelector("#description").value,
-            img : document.querySelector("#image").value
-        }
+            img : document.querySelector("#image").value,
+            categoryId:document.querySelector("#category").value,
+            subcategoryId:document.querySelector("#subcategory").value,
+            extraId: document.querySelector("#extracategory").value
+        } 
 
         // console.log(product)
         let type = document.querySelector("#type").value;
