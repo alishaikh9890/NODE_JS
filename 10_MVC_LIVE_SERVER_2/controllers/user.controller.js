@@ -1,5 +1,6 @@
 const user = require("../models/user.schema");
 const mailer = require("../helper/mail");
+const jwt = require("jsonwebtoken")
 
 const Home = async(req,res)=>{
   let data = await user.find();
@@ -49,6 +50,20 @@ const login = async(req, res) =>{
   if(data.password  != password){
     return res.send('wrong password')
   }
+
+  if(data && data.password == password){
+    let payload = {
+      email : data.email,
+      username: data.username,
+      id: data.id
+    }
+    let token = jwt.sign(payload, "private-key");
+    console.log(token)
+  }
+
+
+
+
   console.log(data);
   return res.send("logged in")
 }
@@ -139,4 +154,11 @@ const verify = (req, res) =>{
   }
 }
 
-module.exports = {Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage, passwordReset, verify};
+
+const tokenverify = (req, res) =>{
+  let {token} = req.body;
+  let decoded = jwt.verify(token, "private-key")
+  res.send(decoded)
+}
+
+module.exports = {Home, tokenverify, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage, passwordReset, verify};
