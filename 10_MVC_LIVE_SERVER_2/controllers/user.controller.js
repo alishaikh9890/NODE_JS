@@ -58,14 +58,10 @@ const login = async(req, res) =>{
       id: data.id
     }
     let token = jwt.sign(payload, "private-key");
-    console.log(token)
+   
+    return res.cookie("token", token).send("logged in")
+    
   }
-
-
-
-
-  console.log(data);
-  return res.send("logged in")
 }
 
 
@@ -156,9 +152,11 @@ const verify = (req, res) =>{
 
 
 const tokenverify = (req, res) =>{
-  let {token} = req.body;
-  let decoded = jwt.verify(token, "private-key")
-  res.send(decoded)
-}
+  // console.log(req.headers.authorization.split(" ")[1]);
+  // res.send("text")
+   let {token} = req.cookies;
+   let decoded = jwt.verify(token, "private-key");
+   res.send(decoded);
+};
 
 module.exports = {Home, tokenverify, signup, update, remove, ui, getsignup, login, Local, LoginPage, profile, logout, forget, resent, resetPage, passwordReset, verify};

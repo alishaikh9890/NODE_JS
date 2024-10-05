@@ -39,7 +39,7 @@ router.get("/reset",Auth, resetPage)
 router.post("/forget", passwordReset)
 
 router.post("/verify",verify)
-
-router.post("/token", tokenverify)
+ 
+router.get("/token", tokenverify)
 
 module.exports ={router};
