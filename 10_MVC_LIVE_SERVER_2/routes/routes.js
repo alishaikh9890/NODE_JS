@@ -3,6 +3,7 @@ const{ Home, signup, update, remove, ui, getsignup, login, Local, LoginPage, pro
 const {valid, isAuth} = require("../middlewares/user.middleware");
 const Auth = require("../middlewares/isAuth");
 const passport = require("passport");
+const tokenchecker = require("../middlewares/jwtmiddleware");
 
 const router = Router();
 
@@ -16,7 +17,7 @@ router.patch("/update/:id", update);
 
 router.delete("/remove/:id", remove) 
 
-router.get("/", ui)
+router.get("/", tokenchecker, ui)
 
 router.get("/signup",getsignup)
 

@@ -12,6 +12,7 @@ const valid = (req, res, next) =>{
         res.status(400).send("not valid data")
     }
 }
+
    
 const isAuth = async(req, res, next)=>{
 

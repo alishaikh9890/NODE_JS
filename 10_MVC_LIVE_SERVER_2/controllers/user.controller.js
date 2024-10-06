@@ -10,8 +10,10 @@ const Home = async(req,res)=>{
 const signup = async(req, res)=>{
     console.log(req.body);
     let data = await user.create(req.body)
-    res.cookie("logged", data.id).send(data);
+    // res.cookie("logged", data.id).send(data);
+    res.send(data)
 }
+
 
 const update = async(req, res) => {
   let {id} = req.params;
@@ -55,16 +57,17 @@ const login = async(req, res) =>{
     let payload = {
       email : data.email,
       username: data.username,
-      id: data.id
+      id: data.id,
+      role: data.role || "user"
+
     }
-    let token = jwt.sign(payload, "private-key");
+    let token = jwt.sign(payload, "private-key", {expiresIn: "60s"});
    
     return res.cookie("token", token).send("logged in")
     
   }
 }
-
-
+ 
 // ---  passport js ---  //
 
 const Local = (req, res) => {
